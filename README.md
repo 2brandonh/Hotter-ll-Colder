@@ -1,5 +1,6 @@
 # Hotter-ll-Colder
 Best game
+btw idk how github IP law works but we didnt write most of the stuff here, just modified it.
 
 Two states: initial calibration
 
