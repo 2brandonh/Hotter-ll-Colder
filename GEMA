@@ -66,7 +66,7 @@
 /* Data acquisition period [ms] */
 #define DATA_PERIOD_MS (10)
 
-#define NUMBER_TEST_CYCLES 10
+#define NUMBER_TEST_CYCLES 7
 #define STATE_1_DWELL 10000
 #define CLASSIFICATION_ACC_THRESHOLD 1
 #define CLASSIFICATION_DISC_THRESHOLD 1.05
@@ -1055,6 +1055,7 @@ int Accel_Gyro_Sensor_Handler(void *handle, void *handle_g, ANN *net, int prev_l
 		 */
 
 		k = 0;
+		int roundcheck = 0;
 
 		while (k < NUMBER_TEST_CYCLES) {
 
@@ -1143,8 +1144,9 @@ int Accel_Gyro_Sensor_Handler(void *handle, void *handle_g, ANN *net, int prev_l
 					GAME_FINISHED = 1;
 				break;
 			case 5:
-				sprintf(msg3, "\n\rNeural Network Classification - DUMMY MOTION");
+				sprintf(msg3, "\n\rNeural Network Classification - Your Current Round is %d" ,k);
 				CDC_Fill_Buffer((uint8_t *) msg3, strlen(msg3));
+				roundcheck = 1;
 				break;
 			case -1:
 				sprintf(msg3, "\n\rNeural Network Classification - ERROR");
@@ -1157,12 +1159,15 @@ int Accel_Gyro_Sensor_Handler(void *handle, void *handle_g, ANN *net, int prev_l
 			}
 
 			if (GAME_FINISHED){
-				sprintf(msg3, "\n\rYOU WON THE GAME!");
+				sprintf(msg3, "\n\rYOU WON THE GAME!\n\n\n\n");
 						CDC_Fill_Buffer((uint8_t *) msg3, strlen(msg3));
 						break;
 			}
 
+		if (roundcheck == 0)
 		k = k + 1;
+		else
+			roundcheck = 0;
 		}
 	}
 	return prev_loc;
@@ -1239,10 +1244,32 @@ int main(void) {
 
 	/* Notify user */
 
-	sprintf(msg2, "\n\rEmbeddedML Motion Pattern Classification\r\n");
-	CDC_Fill_Buffer((uint8_t *) msg2, strlen(msg2));
 
-	sprintf(msg2, "\n\rDouble Tap to start training");
+	sprintf(msg2, "\n\rWelcome to Hotter OR Colder! The hottest game on the market!");
+		CDC_Fill_Buffer((uint8_t *) msg2, strlen(msg2));
+
+	sprintf(msg2, "\n\rFirst, your STM will need to be calibrated to our controls. Hold the STM such that you can read the ST logo.");
+				CDC_Fill_Buffer((uint8_t *) msg2, strlen(msg2));
+
+	sprintf(msg2, "\n\r\nMotion 1: Tilt forwards, then tilt forwards. (Moving Forwards 1 Unit)");
+							CDC_Fill_Buffer((uint8_t *) msg2, strlen(msg2));
+
+	sprintf(msg2, "\n\r\nMotion 2: Tilt backwards, then tilt backwards. (Moving Backwards 1 Unit)");
+							CDC_Fill_Buffer((uint8_t *) msg2, strlen(msg2));
+
+	sprintf(msg2, "\n\r\nMotion 3: Tilt forwards, then turn left. (Turning Left)");
+							CDC_Fill_Buffer((uint8_t *) msg2, strlen(msg2));
+
+	sprintf(msg2, "\n\r\nMotion 4: Tilt forwards, then turn right. (Turning Right)");
+							CDC_Fill_Buffer((uint8_t *) msg2, strlen(msg2));
+
+	sprintf(msg2, "\n\r\nMotion 5: Tilt forwards, then tilt backwards. (Check Distance to Location, the Less Blinks the Closer)");
+							CDC_Fill_Buffer((uint8_t *) msg2, strlen(msg2));
+
+	sprintf(msg2, "\n\r\nMotion 6: Tilt right, then turn left. (Check Round)");
+							CDC_Fill_Buffer((uint8_t *) msg2, strlen(msg2));
+
+	sprintf(msg2, "\n\Confirm with a Double Tap to start training");
 	CDC_Fill_Buffer((uint8_t *) msg2, strlen(msg2));
 
 	//---EMBEDDED ANN---
