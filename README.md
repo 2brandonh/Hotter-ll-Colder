@@ -11,3 +11,12 @@ sprintf(msg1, "Before starting Hotter or Colder, you will need to calibrate your
 sprintf(msg1, "Now to calibrate turning, KEEP THE DEVICE FLAT and turn the device 90 degrees to the right for the first motion and turn the device 90 degrees to the left for the second motion. \n Double tap to start this.")
 
 sprintf(msg1, "Now to calibrate motion, KEEP THE DEVICE FLAT and push the device forwards for the first motion and push the device backwards for the second motion. \n Double tap to start this.")
+
+
+states:
+1-forward
+2-backward
+3-turn left
+4-turn right
+5-check dist
+6-East Egg AAAAAHHHHHH too fast give me more time to decide (this does nothing)
