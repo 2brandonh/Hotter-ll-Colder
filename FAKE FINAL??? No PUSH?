@@ -113,6 +113,7 @@ static void initializeAllSensors(void);
 /* Private functions ---------------------------------------------------------*/
 
 static volatile uint8_t hasTrained = 0;
+int prev_dist;
 int x_loc;
 int y_loc;
 int cur_x;
@@ -1072,6 +1073,7 @@ int Accel_Gyro_Sensor_Handler(void *handle, void *handle_g, ANN *net, int prev_l
 		int roundcheck = 0;
 
 		while (k < NUMBER_TEST_CYCLES) {
+			prev_dist = sqrt((x_loc - cur_x) * (x_loc - cur_x) + (y_loc - cur_y) * (y_loc - cur_y));
 
 			BSP_LED_Off(LED1);
 
@@ -1127,8 +1129,6 @@ int Accel_Gyro_Sensor_Handler(void *handle, void *handle_g, ANN *net, int prev_l
 			} else {
 				LED_Code_Blink(loc + 1);
 			}
-
-			int GAME_FINISHED = 0;
 
 			switch (loc) {
 			case 0: //forward
@@ -1191,6 +1191,23 @@ int Accel_Gyro_Sensor_Handler(void *handle, void *handle_g, ANN *net, int prev_l
 
 						break;
 			}
+
+			int dist;
+			dist =  sqrt((x_loc - cur_x) * (x_loc - cur_x) + (y_loc - cur_y) * (y_loc - cur_y));
+
+			if (dist > prev_dist){
+				sprintf(msg3, "\n\rCOLDER!!!\n", k);
+				CDC_Fill_Buffer((uint8_t *) msg3, strlen(msg3));
+			}
+			if (dist < prev_dist){
+				sprintf(msg3, "\n\rHOTTER!!!\n", k);
+				CDC_Fill_Buffer((uint8_t *) msg3, strlen(msg3));
+			}
+			if (dist == prev_dist){
+				sprintf(msg3, "\n\rAround the Same Temperature.\n", k);
+				CDC_Fill_Buffer((uint8_t *) msg3, strlen(msg3));
+			}
+
 
 		if (roundcheck == 0)
 		k = k + 1;
