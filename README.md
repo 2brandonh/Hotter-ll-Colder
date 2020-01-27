@@ -1,6 +1,5 @@
 # Hotter-ll-Colder
-Best game
-Most of this code was written by Charles Zloom. We adapted the embeddedML functions in order to create an STM32 that could process movement, orientation, and distance to a generated position using machine learning.
+**Most of this code was written by Charles Zloom as specified in the comments of the C file** We adapted the embeddedML functions in order to create an STM32 that could process movement, orientation, and distance to a generated position using machine learning.
 
 # Two State System
 
