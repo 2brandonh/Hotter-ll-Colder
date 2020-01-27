@@ -1,6 +1,7 @@
 # Hotter-ll-Colder
 Best game
-btw idk how github IP law works but we didnt write most of the stuff here, just modified it.
+Most of this code was written by Charles Zloom. We adapted the embeddedML functions in order to create an STM32 that could process movement, orientation, and distance to a generated position using machine learning.
+
 
 Two states: initial calibration
 
