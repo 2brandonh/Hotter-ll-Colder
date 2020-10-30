@@ -1,23 +1,14 @@
 # Hotter-ll-Colder
-**Most of this code was written by Charles Zloom as specified in the comments of the C file.** We adapted the embeddedML functions in order to create an STM32 that could process movement, orientation, and distance to a generated position using machine learning.
+**Most of this code was written by Charles Zloom as specified in the comments of the C file.** We adapted the embeddedML functions in order to create an STM32 that could process movement, orientation, and distance to a generated position using machine learning. <br/>
+
+The video detailing a split screen of our device movements and the corresponding code in terminal can be viewed below.
+https://www.youtube.com/watch?v=wM6sbqFG2L0&t=120s&ab_channel=BlakeLazarine
+
+<img src=https://github.com/2brandonh/Hotter-ll-Colder/blob/master/HLC1.png width=600>
 
 # Two State System
+The device works by first giving the user instructions on how to train the sensortile to process movements according to direction. The objective of the game involves finding a randomized location in a grid by moving around in realtime. At the start of each round, the user can input six different actions based on the two state recognition system as outlined below. <br/> <br/>
+<img src=https://github.com/2brandonh/Hotter-ll-Colder/blob/master/HLC2.png width=600> <br/>
 
-Two states: initial calibration
-
-Instruction:
-
-sprintf(msg1, "Before starting Hotter or Colder, you will need to calibrate your device. \n Orient the STM so that you can read the ST symbol left to right. \n Turn the device on its side left, then turn it on its side right. Double tap to start this."
-
-sprintf(msg1, "Now to calibrate turning, KEEP THE DEVICE FLAT and turn the device 90 degrees to the right for the first motion and turn the device 90 degrees to the left for the second motion. \n Double tap to start this.")
-
-sprintf(msg1, "Now to calibrate motion, KEEP THE DEVICE FLAT and push the device forwards for the first motion and push the device backwards for the second motion. \n Double tap to start this.")
-
-
-states:
-1-forward
-2-backward
-3-turn left
-4-turn right
-5-check dist
-6-East Egg AAAAAHHHHHH too fast give me more time to decide (this does nothing)
+Information is given as to the current direction of the sensortile, X and Y units, and temperature in relation to the distance from the final destination. The sensortile blinks in response to the distance as well, and blinks rapidly once the destination is reached. This allows for the user to play the game remotely without requiring the terminal screen.<br/> <br/>
+<img src=https://github.com/2brandonh/Hotter-ll-Colder/blob/master/HLC3.png width=600> <br/>
