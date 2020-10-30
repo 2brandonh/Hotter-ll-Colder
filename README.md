@@ -1,5 +1,5 @@
 # Hotter-ll-Colder
-**Most of this code was written by Charles Zloom as specified in the comments of the C file.** We adapted the embeddedML functions in order to create an STM32 that could process movement, orientation, and distance to a generated position using machine learning. <br/>
+**Most of this code was written by Charles Zloom as specified in the comments of the C file.** (ACTUALLY-THE-FINAL-MAIN.c) We adapted the embeddedML functions in order to create an STM32 that could process movement, orientation, and distance to a generated position using machine learning. <br/>
 
 The video detailing a split screen of our device movements and the corresponding code in terminal can be viewed below.
 https://www.youtube.com/watch?v=wM6sbqFG2L0&t=120s&ab_channel=BlakeLazarine
